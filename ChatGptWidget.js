@@ -94,7 +94,7 @@
           },
           body: JSON.stringify({
             "model": "gpt-3.5-turbo-0613",
-            messages: [{ role: "user", content: "message" }],
+            "messages": "messages",
             "max_tokens": parseInt(max_tokens),
             "n": 1,
             "temperature": 0.5
@@ -106,8 +106,8 @@
             choices
           } = await response.json();
           console.log(response);
-          const generatedTextValue = choices[0].text;
-         console.log(generatedTextValue);
+          const generatedTextValue = data.choices[0].message.content;
+          console.log(generatedTextValue);
           generatedText.value = generatedTextValue.replace(/^\n+/, '');
         } else {
           const error = await response.json();
