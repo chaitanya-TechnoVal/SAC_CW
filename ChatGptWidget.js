@@ -93,8 +93,8 @@
             "Authorization": "Bearer " + apiKey
           },
           body: JSON.stringify({
-            "model": "gpt-3.5-turbo-0613",
-            "messages": ["messages"],
+            "model": "gpt-3.5-turbo-instruct",
+            "messages": messages,
             "max_tokens": parseInt(max_tokens),
             "n": 1,
             "temperature": 0.5
@@ -106,7 +106,7 @@
             choices
           } = await response.json();
           console.log(response);
-          const generatedTextValue = data.choices[0].message.content;
+          const generatedTextValue = choices.choices[0].message.content;
           console.log(generatedTextValue);
           generatedText.value = generatedTextValue.replace(/^\n+/, '');
         } else {
