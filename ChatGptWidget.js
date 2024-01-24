@@ -94,7 +94,7 @@
           },
           body: JSON.stringify({
             "model": "gpt-3.5-turbo-0613",
-            "prompt": prompt,
+            "messages": [{"role": "user", "content": "Hello!"}],
             "max_tokens": parseInt(max_tokens),
             "n": 1,
             "temperature": 0.5
