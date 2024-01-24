@@ -86,15 +86,15 @@
         const generatedText = this.shadowRoot.getElementById("generated-text");
         generatedText.value = "Finding result...";
         const prompt = promptInput.value;
-        const response = await fetch("https://api.openai.com/v1/chat/completions", {
+        const response = await fetch("https://api.openai.com/v1/completions", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             "Authorization": "Bearer " + apiKey
           },
           body: JSON.stringify({
-            "model": "gpt-3.5-turbo-0613",
-            "messages": messages,
+            "model": "gpt-3.5-turbo-instruct",
+            "prompt": prompt,
             "max_tokens": parseInt(max_tokens),
             "n": 1,
             "temperature": 0.5
@@ -105,8 +105,7 @@
           const {
             choices
           } = await response.json();
-          console.log(response);
-          const generatedTextValue = choices.choices[0].message.content;
+          const generatedTextValue = choices[0].text;
           console.log(generatedTextValue);
           generatedText.value = generatedTextValue.replace(/^\n+/, '');
         } else {
