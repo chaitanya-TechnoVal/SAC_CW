@@ -105,6 +105,7 @@
           const {
             choices
           } = await response.json();
+          console.log(response);
           const generatedTextValue = response.data.choices[0].text;
           generatedText.value = generatedTextValue.replace(/^\n+/, '');
         } else {
